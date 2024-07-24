@@ -20,7 +20,10 @@ return this.http.post(this.baseURL+ "/register" , data);
 allusers(){
   return this.http.get(this.baseURL + "/allusers");
 }
-
+//login
+login(username:any){
+  return this.http.get(this.baseURL + "/login" + username)
+}
 
 
 

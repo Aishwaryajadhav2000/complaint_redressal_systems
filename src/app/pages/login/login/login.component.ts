@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public route: Router,
+    public auth:AuthService
 
   ) { }
 
@@ -32,14 +33,17 @@ export class LoginComponent implements OnInit {
     console.log("click");
     if(this.login.value.role == 'Admin'){
       this.route.navigate(['/adminhome']);
-    }else if(this.login.value.role == 'Customer'){
-      this.route.navigate(['/custdashboard']);
-    }else if(this.login.value.role == 'Manager'){
-      this.route.navigate(['/managerhome']);
-    }else if(this.login.value.role == 'Engineer'){
-      this.route.navigate(['/engdash']);
     }
-   
+    // else if(this.login.value.role == 'Customer'){
+    //   this.route.navigate(['/custdashboard']);
+    // }else if(this.login.value.role == 'Manager'){
+    //   this.route.navigate(['/managerhome']);
+    // }else if(this.login.value.role == 'Engineer'){
+    //   this.route.navigate(['/engdash']);
+    // }
+   this.auth.login(this.login.value.username).subscribe((response:any)=>{
+    console.log("response", response);
+   })
   }
 
   signUp() {
